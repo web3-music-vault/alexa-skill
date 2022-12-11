@@ -1,0 +1,80 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Plays your un-lockable web3 NFT music",
+          "examplePhrases": [
+            "Alexa ask Web3 Music Vault to play my NFT music",
+            "Alexa ask Web3 Music Vault to play my NFTs"
+          ],
+          "keywords": [
+            "digital",
+            "collectibles",
+            "nft",
+            "music",
+            "solana"
+          ],
+          "name": "Web3 Music Vault",
+          "description": "The Web3 Vault allows you to play music from from music digital collectibles on your Alexa enabled device. You must link your web3 wallet (supports Solana wallets) and unlock the content to allow Alexa to play it.",
+          "smallIconUri": "file://assets/images/en-US_smallIconUri.png",
+          "largeIconUri": "file://assets/images/en-US_largeIconUri.png"
+        }
+      },
+      "automaticDistribution": {
+        "isActive": false
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Ask Web3 Music Vault to play my NFT music",
+      "category": "MUSIC_AND_AUDIO_ACCESSORIES",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:801661806835:function:d9f2f4d9-b1db-401f-a021-e77a448de461:Release_0"
+        },
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ],
+        "regions": {
+          "EU": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:eu-west-1:801661806835:function:d9f2f4d9-b1db-401f-a021-e77a448de461:Release_0"
+            }
+          },
+          "NA": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-east-1:801661806835:function:d9f2f4d9-b1db-401f-a021-e77a448de461:Release_0"
+            }
+          },
+          "FE": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-west-2:801661806835:function:d9f2f4d9-b1db-401f-a021-e77a448de461:Release_0"
+            }
+          }
+        }
+      }
+    },
+    "manifestVersion": "1.0",
+    "permissions": [],
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {
+          "privacyPolicyUrl": "https://www.web3musicvault.xyz/privacy"
+        }
+      },
+      "containsAds": false,
+      "isExportCompliant": true,
+      "isChildDirected": false,
+      "shoppingKit": {
+        "isShoppingActionsEnabled": false,
+        "isAmazonAssociatesOnAlexaEnabled": false
+      },
+      "usesPersonalInfo": true
+    }
+  }
+}
