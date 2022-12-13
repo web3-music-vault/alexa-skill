@@ -431,6 +431,7 @@ const AudioPlayerEventHandler = {
                 const expectedPreviousToken = playbackInfo.token;
                 const offsetInMilliseconds = 0;
 
+                console.log('track', track.url, 'offsetInMilliseconds', offsetInMilliseconds, 'expectedPreviousToken', expectedPreviousToken, 'playBehavior', playBehavior)
                 responseBuilder.addAudioPlayerPlayDirective(
                     playBehavior,
                     track.url,
@@ -578,6 +579,8 @@ const controller = {
             offsetInMilliseconds,
             index
         } = playbackInfo;
+        
+        let startSongAtOffset = offsetInMilliseconds
 
         const playBehavior = 'REPLACE_ALL';
         const track = audioData[playOrder[index]];
@@ -589,9 +592,10 @@ const controller = {
         };
 
         if (handlerInput.requestEnvelope.request.type.startsWith('PlaybackController.')) {
+            console.log('track', track.url, 'startSongAtOffset', startSongAtOffset, 'playBehavior', playBehavior, 'token', token, 'audioItemMetadata', audioItemMetadata)
             responseBuilder
                 .withShouldEndSession(true)
-                .addAudioPlayerPlayDirective(playBehavior, track.url, token, offsetInMilliseconds, null, audioItemMetadata);
+                .addAudioPlayerPlayDirective(playBehavior, track.url, token, startSongAtOffset, null, audioItemMetadata);
             return responseBuilder.getResponse();
         }
         
@@ -601,15 +605,19 @@ const controller = {
         } else {
             if(track.title && track.collection && track.collection !== track.title){
                 speech = `Starting from the beginning. This is ${track.title} from ${track.collection} collection.`
+                startSongAtOffset = 0
             }else if(track.title){
-               speech = `Starting from the beginning. This is ${track.title}.`
+               speech = `Starting from the beginning. This is ${track.title}.`;
+               startSongAtOffset = 0
             }
             
         }
+        console.log('track', track.url, 'startSongAtOffset', startSongAtOffset, 'playBehavior', playBehavior, 'token', token, 'audioItemMetadata', audioItemMetadata)
+
         responseBuilder
             .speak(speech)
             .withShouldEndSession(true)
-            .addAudioPlayerPlayDirective(playBehavior, track.url, token, offsetInMilliseconds, null, audioItemMetadata);
+            .addAudioPlayerPlayDirective(playBehavior, track.url, token, startSongAtOffset, null, audioItemMetadata);
 
         return responseBuilder.getResponse();
     },
